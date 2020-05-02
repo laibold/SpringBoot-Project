@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    font-family: 'Roboto', serif;
+    color: #fff;
+    font-size: 15px;
+    margin: 0;
+}
+
+div {
+    display: block;
+}
+
+input, textarea, select, button {
+    font-family: 'Roboto', serif;;
+    color: #fff;
+    font-size: 15px; 
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #2767B1;
+    background-size: cover;
+}
+
+.inner {
+    margin: auto;
+    min-width: 400;
+    max-width: 750px;
+    padding: 90px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    border: 10px solid #0d99d7;
+    background: #39459b;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+}
+
+.form-control {
+    border: none;
+    border-bottom: 2px solid #00ade6;
+    display: block;
+    width: 100%;
+    height: 43px;
+    font-size: 15px;
+    background: 0 0;
+    font-family: 'Roboto', serif;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 45px;
+    font-family: 'Roboto', serif;
+    text-align: center;
+    margin-bottom: 55px; 
+}
+
+p {
+    font-size: 17px;
+    text-align: center;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    line-height: 1.8; 
+}
+
+button {
+    border: none;
+    width: 132px;
+    height: 35px;
+    border: 2px solid #fff;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #00ade6;
+    border-color: transparent;
+}
+
+:focus {
+    outline: none; 
+}
+
+.form-group {
+    position: relative;
+    display: block;
+    margin-bottom: 48px; 
+}
+.form-group span {
+    font-size: 15px;
+    color: #00ade6;
+    position: absolute;
+    top: 11px;
+    transition: all .2s ease;
+    transform-origin: 0 0;
+    cursor: text; 
+}
+.form-group span.border {
+    height: 2px;
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 41px;
+    transform: scaleX(0);
+    transition: all .15s ease;
+    background: #fff; 
+}
+
+.form-control:focus, .form-control:valid {
+    border-bottom: 2px solid #fff; 
+}
+.form-control:focus + span, .form-control:valid + span {
+      transform: translateY(-22px) scale(0.8); 
+}
+.form-control:focus + span + .border, .form-control:valid + span + .border {
+        transform: scaleX(1); 
+}
+
+@media(max-width: 574px) {
+    .inner {
+        padding: 27px 20px 37px;
+        border: none;
+        box-shadow: none;
+    }
+
+    .wrapper {
+        background: #39459b;
+        border: 10px solid #0d99d7; 
+    }
+}
