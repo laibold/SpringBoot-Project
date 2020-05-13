@@ -5,7 +5,15 @@
     </head>
 
     <body>
-        Login        
+        <h2>Login</h2>
+        <span th:text="${passwordHint}"></span>
+        <form method="POST" action="/login">
+            Name: <br>
+            <input type="text" name="username"> <br>
+            Passwort: <br>
+            <input type="password" name="password"> <br><br>
+            <input type="submit" value="ok">  <br>
+        </form>      
         
     </body>
 </html>
