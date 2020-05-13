@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+    <h1>Angebote</h1>
+
+    <span th:if="${#lists.isEmpty(angebotListe)}">
+        Noch keine Einträge vorhanden. <br><br>
+    </span>
+
+    <table th:if="${not #lists.isEmpty(angebotListe)}">
+        <th>
+            <tr>
+                <td>Name</td>
+                <td>Abholort</td>
+                <td>Haltbar bis</td>
+                <td>Beschreibung</td>
+                <td>Bearbeiten</td>
+                <td>Löschen</td>
+            </tr>
+        </th>
+
+        <tr th:each="ele,status : ${angebotListe}" >
+            <td th:text="${ele.name}">Name</td>
+            <td th:text="${ele.abholort}">Abholort</td>
+            <td th:text="${ele.haltbarBis}">Haltbar bis</td>
+            <td th:text="${ele.beschreibung}">Beschreibung</td>
+            <td> <a th:href="@{'/angebot/bearbeiten/' + ${status.index}}">🖊️</a> </td>
+            <td> <a th:href="@{'/angebot/del/' + ${status.index}}">🗑️</a> </td>
+        </tr>
+
+    </table>
+
+    <a href="/angebot/neu">Neu</a>
+
+
+</body>
+</html>

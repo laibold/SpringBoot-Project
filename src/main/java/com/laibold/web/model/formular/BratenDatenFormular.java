@@ -1,19 +1,14 @@
-package com.laibold.web.model;
+package com.laibold.web.model.formular;
 
 import java.time.LocalDate;
 
-public class BratenDaten {
+import com.laibold.web.model.BratenDaten;
+
+public class BratenDatenFormular {
     String name;
     String abholort;
     LocalDate haltbarBis;
     String beschreibung;
-
-    public BratenDaten(String name, String abholort, LocalDate haltbarBis, String beschreibung) {
-        this.name = name;
-        this.abholort = abholort;
-        this.haltbarBis = haltbarBis;
-        this.beschreibung = beschreibung;
-    }
 
     public String getName() {
         return name;
@@ -47,12 +42,7 @@ public class BratenDaten {
         this.beschreibung = beschreibung;
     }
 
-    public String toString() {
-        String s = "BratenDaten";
-        s += "Name: " + name + "\n";
-        s += "Abholort: " + abholort + "\n";
-        s += "Haltbar bis: " + haltbarBis + "\n";
-        s += "Beschreibung: " + beschreibung + "\n";
-        return s;
-    }
+	public BratenDaten getBratenDaten() {
+		return new BratenDaten(name, abholort, haltbarBis, beschreibung);
+	}
 }

@@ -22,12 +22,13 @@ public class LoginController {
     @PostMapping("")
     public String loginPost(Model m, @RequestParam String username, @RequestParam String password) {
         String correctPassword = username + username.length();
-        if (!password.equals(correctPassword)) {
-            logger.error("Failed login attempt with user {} and password {}.", username, password);
-            String hint = "Hinweis: Das korrekte Passwort für " + username + " ist " + correctPassword;
-            m.addAttribute("passwordHint", hint);
+        if (password.equals(correctPassword)) {
+            return "redirect:/angebot/liste";
         }
-            return "login";
+        //logger.error("Failed login attempt with user {} and password {}.", username, password);
+        String hint = "Hinweis: Das korrekte Passwort für " + username + " ist " + correctPassword;
+        m.addAttribute("passwordHint", hint);
+        return "login";
     }
 
 }

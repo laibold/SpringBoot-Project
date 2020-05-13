@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+    <h1>Braten erfassen und bearbeiten</h1>
+
+    <form method="POST" action="/angebot/liste">
+        Anbieter: <br>
+        <input type="text" name="name" th:value="${editAngebot} ? ${editAngebot.name} : 'Thorsten'"> <br>
+        Abholort: <br>
+        <input type="text" name="abholort" value="Zuhause"> <br> 
+        Beschreibung: <br>
+        <input type="text" name="beschreibung" value="Supi lecki"> <br> 
+        Haltbar bis: <br>
+        <input type="date" name="haltbarBis" value="2020-06-01"> <br><br>
+        <input type="submit" value="ok"> <br>
+    </form>
+
+</body>
+</html>
