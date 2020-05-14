@@ -61,6 +61,7 @@ public class BratenAngebotController {
     @GetMapping("/del/{i}")
     public String deleteAngebot(@PathVariable int i, @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
         if (!angebotListe.isEmpty() && angebotListe.size() >= i){
+            // Wenn Element noch vorhanden
             angebotListe.remove(i);
         }
         return "angebot/liste";
@@ -71,9 +72,13 @@ public class BratenAngebotController {
      */
     @GetMapping("/bearbeiten/{i}")
     public String editAngebot(Model m, @PathVariable int i, @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
-        m.addAttribute("editAngebot", angebotListe.get(i));
-        angebotListe.remove(i);
-        return "angebot/bearbeiten";
+        if (!angebotListe.isEmpty() && angebotListe.size() >= i){
+            m.addAttribute("editAngebot", angebotListe.get(i));
+            angebotListe.remove(i);
+            return "angebot/bearbeiten";
+        }
+        // Fehlerfall Element nicht mehr vorhanden
+         return "angebot/liste";
     }
     
 }

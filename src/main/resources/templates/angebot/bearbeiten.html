@@ -12,11 +12,11 @@
         Anbieter: <br>
         <input type="text" name="name" th:value="${editAngebot} ? ${editAngebot.name} : 'Thorsten'"> <br>
         Abholort: <br>
-        <input type="text" name="abholort" value="Zuhause"> <br> 
+        <input type="text" name="abholort" th:value="${editAngebot} ? ${editAngebot.abholort} : 'Zuhause'"> <br>
         Beschreibung: <br>
-        <input type="text" name="beschreibung" value="Supi lecki"> <br> 
+        <input type="text" name="beschreibung" th:value="${editAngebot} ? ${editAngebot.beschreibung} : 'Supi lecki'"> <br>
         Haltbar bis: <br>
-        <input type="date" name="haltbarBis" value="2020-06-01"> <br><br>
+        <input type="date" name="haltbarBis" th:value="${editAngebot} ? ${editAngebot.beschreibung} : '2020-06-01'"> <br><br>
         <input type="submit" value="ok"> <br>
     </form>
 
