@@ -12,22 +12,19 @@
         Noch keine Einträge vorhanden. <br><br>
     </span>
 
-    <table th:if="${not #lists.isEmpty(angebotListe)}">
-        <th>
-            <tr>
-                <td>Name</td>
-                <td>Abholort</td>
-                <td>Haltbar bis</td>
-                <td>Beschreibung</td>
-                <td>Bearbeiten</td>
-                <td>Löschen</td>
-            </tr>
-        </th>
-
+    <table th:if="${not #lists.isEmpty(angebotListe)}" class="striped">
+        <tr>
+            <th>Name</td>
+            <th>Abholort</th>
+            <th>Haltbar bis</th>
+            <th>Beschreibung</th>
+            <th>Bearbeiten</th>
+            <th>Löschen</th>
+        </tr>
         <tr th:each="ele,status : ${angebotListe}" >
             <td th:text="${ele.name}">Name</td>
             <td th:text="${ele.abholort}">Abholort</td>
-            <td th:text="${ele.haltbarBis}">Haltbar bis</td>
+            <td th:text="${#temporals.format(ele.haltbarBis, 'dd.MM.yyyy')}">Haltbar bis</td>
             <td th:text="${ele.beschreibung}">Beschreibung</td>
             <td> <a th:href="@{'/angebot/bearbeiten/' + ${status.index}}">🖊️</a> </td>
             <td> <a th:href="@{'/angebot/del/' + ${status.index}}">🗑️</a> </td>

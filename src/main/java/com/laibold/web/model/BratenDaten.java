@@ -8,6 +8,10 @@ public class BratenDaten {
     LocalDate haltbarBis;
     String beschreibung;
 
+    public BratenDaten() {
+
+    }
+
     public BratenDaten(String name, String abholort, LocalDate haltbarBis, String beschreibung) {
         this.name = name;
         this.abholort = abholort;

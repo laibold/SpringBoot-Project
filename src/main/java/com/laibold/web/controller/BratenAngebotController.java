@@ -40,9 +40,9 @@ public class BratenAngebotController {
      * Neues Element in Liste POSTen
      */
     @PostMapping("/liste")
-    public String listePost(@ModelAttribute("bratenFormular") BratenDatenFormular bratenFormular, 
-            @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
-        angebotListe.add(bratenFormular.getBratenDaten());
+    public String listePost(@ModelAttribute("bratenFormular") BratenDaten bratenFormular,
+                            @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
+        angebotListe.add(bratenFormular);
         return "angebot/liste";
     }
 
@@ -51,7 +51,7 @@ public class BratenAngebotController {
      */
     @GetMapping("/neu")
     public String neuGet(Model m) {
-        m.addAttribute("bratenFormular", new BratenDatenFormular());
+        m.addAttribute("formBraten", new BratenDaten());
         return "angebot/bearbeiten";
     }
 
@@ -60,7 +60,7 @@ public class BratenAngebotController {
      */
     @GetMapping("/del/{i}")
     public String deleteAngebot(@PathVariable int i, @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
-        if (!angebotListe.isEmpty() && angebotListe.size() >= i){
+        if (!angebotListe.isEmpty() && angebotListe.size() >= i) {
             // Wenn Element noch vorhanden
             angebotListe.remove(i);
         }
@@ -72,13 +72,13 @@ public class BratenAngebotController {
      */
     @GetMapping("/bearbeiten/{i}")
     public String editAngebot(Model m, @PathVariable int i, @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
-        if (!angebotListe.isEmpty() && angebotListe.size() >= i){
-            m.addAttribute("editAngebot", angebotListe.get(i));
+        if (!angebotListe.isEmpty() && angebotListe.size() >= i) {
+            m.addAttribute("formBraten", angebotListe.get(i));
             angebotListe.remove(i);
             return "angebot/bearbeiten";
         }
         // Fehlerfall Element nicht mehr vorhanden
-         return "angebot/liste";
+        return "angebot/liste";
     }
-    
+
 }
