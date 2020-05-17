@@ -4,5 +4,94 @@ body {
     font-family: 'Roboto', sans-serif;
     color: rgb(37, 37, 37);
     font-size: 15px;
-    margin: 20;
+    margin: 0px;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-image: url("img/bg.png");
+}
+
+.inner {
+    color: #FFFFFF;
+    margin: auto;
+    min-width: 400px;
+    max-width: 750px;
+    padding: 90px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    background: rgba(137, 137, 137, 0.65);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+}
+
+.inputForm input {
+    min-width: 200px;
+    color: #FFFFFF;
+    background: transparent;
+    border: none;
+    border-bottom: #FFFFFF solid 1px;
+    margin-bottom: 20px;
+}
+
+.content {
+    text-align: center;
+    color: white;
+    align-content: center;
+}
+
+.inputError {
+    border: solid 1px red;
+}
+
+h1 {
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    width: 132px;
+    height: 35px;
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.centerTable {
+    width:70%;
+    margin: 40px 15% 50px;
+    border-collapse: collapse;
+}
+
+.centerTable th {
+    background: rgba(255, 255, 255, 0.4);
+    color: #313131;
+}
+
+.centerTable tr {
+    background: rgba(255, 255, 255, 0.23);
+}
+
+.centerTable td {
+    padding: 7px;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.56);
+    border-color: transparent;
+}
+
+:focus {
+    outline: none;
 }

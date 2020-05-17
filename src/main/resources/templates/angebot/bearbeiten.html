@@ -10,13 +10,25 @@
 
     <form method="POST" action="/angebot/liste" th:object="${formBraten}">
         Anbieter: <br>
-        <input type="text" th:field="*{name}" required> <br>
+        <input type="text" th:field="*{name}" th:errorclass="inputError">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name falsch</span>
+        <br>
+
         Abholort: <br>
-        <input type="text" th:field="*{abholort}" required> <br>
+        <input type="text" th:field="*{abholort}" th:errorclass="inputError">
+        <span th:if="${#fields.hasErrors('abholort')}" th:errors="*{abholort}">Abholort falsch</span>
+        <br>
+
         Beschreibung: <br>
-        <input type="text" th:field="*{beschreibung}" required> <br>
+        <input type="text" th:field="*{beschreibung}" th:errorclass="inputError">
+        <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}">Beschreibung falsch</span>
+        <br>
+
         Haltbar bis: <br>
-        <input type="date" th:field="*{haltbarBis}" required> <br><br>
+        <input type="date" th:field="*{haltbarBis}" th:errorclass="inputError">
+        <span th:if="${#fields.hasErrors('haltbarBis')}" th:errors="*{haltbarBis}">Datum falsch</span>
+        <br><br>
+
         <input type="submit" value="ok"> <br>
     </form>
 

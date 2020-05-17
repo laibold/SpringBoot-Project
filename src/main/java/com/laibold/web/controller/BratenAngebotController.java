@@ -1,10 +1,10 @@
 package com.laibold.web.controller;
 
 import com.laibold.web.model.BratenDaten;
-import com.laibold.web.model.formular.BratenDatenFormular;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
-
 
 @Controller
 @RequestMapping("/angebot")
@@ -40,9 +40,12 @@ public class BratenAngebotController {
      * Neues Element in Liste POSTen
      */
     @PostMapping("/liste")
-    public String listePost(@ModelAttribute("bratenFormular") BratenDaten bratenFormular,
+    public String listePost(Model m, @Valid @ModelAttribute("formBraten") BratenDaten formBraten, BindingResult result,
                             @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
-        angebotListe.add(bratenFormular);
+       if(result.hasErrors()) {
+           return "angebot/bearbeiten";
+       }
+        angebotListe.add(formBraten);
         return "angebot/liste";
     }
 

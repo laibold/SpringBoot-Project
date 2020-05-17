@@ -5,16 +5,23 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
-<body>
-    <h1>Login</h1>
-    <span th:text="${passwordHint}"></span>
-    <form method="POST" action="/login">
-        Name: <br>
-        <input type="text" name="username"> <br>
-        Passwort: <br>
-        <input type="password" name="password"> <br><br>
-        <input type="submit" value="ok"> <br>
-    </form>
+<body th:background="@{/img/bg.jpg}">
+
+    <div class="wrapper">
+
+        <div class="inner">
+            <h1>Login</h1>
+            <span th:text="${passwordHint}"></span>
+            <form method="POST" action="/login" class="inputForm">
+                Name: <br>
+                <input type="text" name="username"> <br>
+                Passwort: <br>
+                <input type="password" name="password"> <br><br>
+                <button  type="submit">OK</button> <br>
+            </form>
+        </div>
+
+    </div>
 
 </body>
 </html>

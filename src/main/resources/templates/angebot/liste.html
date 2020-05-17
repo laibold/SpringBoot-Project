@@ -5,34 +5,38 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
-<body>
-    <h1>Angebote</h1>
+<body th:background="@{/img/bg.jpg}">
 
-    <span th:if="${#lists.isEmpty(angebotListe)}">
+    <div class="content">
+
+        <h1>ANGEBOTE</h1>
+
+        <span th:if="${#lists.isEmpty(angebotListe)}">
         Noch keine Einträge vorhanden. <br><br>
     </span>
 
-    <table th:if="${not #lists.isEmpty(angebotListe)}" class="striped">
-        <tr>
-            <th>Name</td>
-            <th>Abholort</th>
-            <th>Haltbar bis</th>
-            <th>Beschreibung</th>
-            <th>Bearbeiten</th>
-            <th>Löschen</th>
-        </tr>
-        <tr th:each="ele,status : ${angebotListe}" >
-            <td th:text="${ele.name}">Name</td>
-            <td th:text="${ele.abholort}">Abholort</td>
-            <td th:text="${#temporals.format(ele.haltbarBis, 'dd.MM.yyyy')}">Haltbar bis</td>
-            <td th:text="${ele.beschreibung}">Beschreibung</td>
-            <td> <a th:href="@{'/angebot/bearbeiten/' + ${status.index}}">🖊️</a> </td>
-            <td> <a th:href="@{'/angebot/del/' + ${status.index}}">🗑️</a> </td>
-        </tr>
+        <table th:if="${not #lists.isEmpty(angebotListe)}" class="centerTable">
+            <tr>
+                <th>Name</td>
+                <th>Abholort</th>
+                <th>Haltbar bis</th>
+                <th>Beschreibung</th>
+                <th>Bearbeiten</th>
+                <th>Löschen</th>
+            </tr>
+            <tr th:each="ele,status : ${angebotListe}" >
+                <td th:text="${ele.name}">Name</td>
+                <td th:text="${ele.abholort}">Abholort</td>
+                <td th:text="${#temporals.format(ele.haltbarBis, 'dd.MM.yyyy')}">Haltbar bis</td>
+                <td th:text="${ele.beschreibung}">Beschreibung</td>
+                <td> <a th:href="@{'/angebot/bearbeiten/' + ${status.index}}">🖊️</a> </td>
+                <td> <a th:href="@{'/angebot/del/' + ${status.index}}">🗑️</a> </td>
+            </tr>
+        </table>
 
-    </table>
+        <a href="/angebot/neu"><button>NEU</button></a>
 
-    <a href="/angebot/neu">Neu</a>
+    </div>
 
 
 </body>
