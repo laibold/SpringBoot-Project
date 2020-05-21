@@ -39,14 +39,14 @@ public class BratenAngebotController {
     /**
      * Neues Element in Liste POSTen
      */
-    @PostMapping("/liste")
+    @PostMapping("/neu")
     public String listePost(Model m, @Valid @ModelAttribute("formBraten") BratenDaten formBraten, BindingResult result,
                             @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
        if(result.hasErrors()) {
            return "angebot/bearbeiten";
        }
         angebotListe.add(formBraten);
-        return "angebot/liste";
+        return "redirect:/angebot/liste";
     }
 
     /**

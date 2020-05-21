@@ -1,5 +1,6 @@
 package com.laibold.web.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
@@ -9,19 +10,18 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class BratenDaten {
-    @Size(min=3, message="Name muss mindestens {min} Zeichen lang sein")
+    @Size(min = 3, message = "Name muss mindestens {min} Zeichen lang sein")
     private String name;
 
-    @NotBlank(message="Darf nicht leer sein")
+    @NotBlank(message = "Darf nicht leer sein")
     private String abholort;
 
-    @Size(max=80, message="Beschreibung darf maximal {max} Zeichen lang sein")
-    @NotBlank(message="Darf nicht leer sein")
+    @Size(max = 80, message = "Beschreibung darf maximal {max} Zeichen lang sein")
+    @NotBlank(message = "Darf nicht leer sein")
     private String beschreibung;
 
-    @NotNull(message="Darf nicht null sein") // TODO fehler wenn nichts eingegeben
-    @FutureOrPresent
-    @Valid
+    @NotNull(message = "Gültiges Datum eingeben")
+    @FutureOrPresent(message = "Ih, das ist ja schon abgelaufen")
     private LocalDate haltbarBis;
 
     public BratenDaten() {

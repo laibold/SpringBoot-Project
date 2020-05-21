@@ -8,7 +8,7 @@
 <body>
     <h1>Braten erfassen und bearbeiten</h1>
 
-    <form method="POST" action="/angebot/liste" th:object="${formBraten}">
+    <form method="POST" action="/angebot/neu" th:object="${formBraten}">
         Anbieter: <br>
         <input type="text" th:field="*{name}" th:errorclass="inputError">
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name falsch</span>
