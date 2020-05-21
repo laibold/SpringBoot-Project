@@ -24,6 +24,14 @@
         <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}">Beschreibung falsch</span>
         <br>
 
+        Veggie-Faktor: <br>
+        <select th:field="*{veggieAuswahl}">
+            <option th:each="vw: *{veggieWerte}"
+                    th:value="${vw}"
+                    th:text="${vw} + '%'" />
+        </select>
+        <br>
+
         Haltbar bis: <br>
         <input type="date" th:field="*{haltbarBis}" th:errorclass="inputError">
         <span th:if="${#fields.hasErrors('haltbarBis')}" th:errors="*{haltbarBis}">Datum falsch</span>

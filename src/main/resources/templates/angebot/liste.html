@@ -21,6 +21,7 @@
                 <th>Abholort</th>
                 <th>Haltbar bis</th>
                 <th>Beschreibung</th>
+                <th>Veggie-Faktor</th>
                 <th>Bearbeiten</th>
                 <th>Löschen</th>
             </tr>
@@ -29,6 +30,7 @@
                 <td th:text="${ele.abholort}">Abholort</td>
                 <td th:text="${#temporals.format(ele.haltbarBis, 'dd.MM.yyyy')}">Haltbar bis</td>
                 <td th:text="${ele.beschreibung}">Beschreibung</td>
+                <td th:text="${ele.veggieAuswahl} + '%'">Veggie-Faktor</td>
                 <td> <a th:href="@{'/angebot/bearbeiten/' + ${status.index}}">🖊️</a> </td>
                 <td> <a th:href="@{'/angebot/del/' + ${status.index}}">🗑️</a> </td>
             </tr>

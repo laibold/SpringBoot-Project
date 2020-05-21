@@ -25,6 +25,10 @@ public class BratenDaten {
     @FutureOrPresent(message = "Ih, das ist ja schon abgelaufen")
     private LocalDate haltbarBis;
 
+    private int[] veggieWerte = {0, 25, 50, 100};
+
+    private int veggieAuswahl; // SelectBox Einfachauswahl
+
     public BratenDaten() {
 
     }
@@ -66,6 +70,18 @@ public class BratenDaten {
 
     public void setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
+    }
+
+    public int[] getVeggieWerte() {
+        return veggieWerte;
+    }
+
+    public int getVeggieAuswahl() {
+        return veggieAuswahl;
+    }
+
+    public void setVeggieAuswahl(int veggieAuswahl) {
+        this.veggieAuswahl = veggieAuswahl;
     }
 
     public String toString() {
