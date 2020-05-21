@@ -1,5 +1,6 @@
 package com.laibold.web.model;
 
+import com.laibold.web.tools.validation.Address;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
@@ -13,7 +14,7 @@ public class BratenDaten {
     @Size(min = 3, message = "Name muss mindestens {min} Zeichen lang sein")
     private String name;
 
-    @NotBlank(message = "Darf nicht leer sein")
+    @Address
     private String abholort;
 
     @Size(max = 80, message = "Beschreibung darf maximal {max} Zeichen lang sein")
