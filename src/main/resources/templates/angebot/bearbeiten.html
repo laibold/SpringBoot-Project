@@ -5,40 +5,45 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 
-<body>
-    <h1>Braten erfassen und bearbeiten</h1>
+<body th:background="@{/img/bg.jpg}">
 
-    <form method="POST" action="/angebot/neu" th:object="${formBraten}">
-        Anbieter: <br>
-        <input type="text" th:field="*{name}" th:errorclass="inputError">
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name falsch</span>
-        <br>
+    <header th:insert="fragments/header.html :: header"> </header>
 
-        Abholort: <br>
-        <input type="text" th:field="*{abholort}" th:errorclass="inputError">
-        <span th:if="${#fields.hasErrors('abholort')}" th:errors="*{abholort}">Abholort falsch</span>
-        <br>
+    <h1 class="centered">Braten erfassen und bearbeiten</h1>
 
-        Beschreibung: <br>
-        <input type="text" th:field="*{beschreibung}" th:errorclass="inputError">
-        <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}">Beschreibung falsch</span>
-        <br>
+    <div class="innerContent">
+        <form class="inputForm" method="POST" action="/angebot/neu" th:object="${formBraten}" >
+            Anbieter: <br>
+            <input type="text" th:field="*{name}" th:errorclass="inputError">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name falsch</span>
+            <br>
 
-        Veggie-Faktor: <br>
-        <select th:field="*{veggieAuswahl}">
-            <option th:each="vw: *{veggieWerte}"
-                    th:value="${vw}"
-                    th:text="${vw} + '%'" />
-        </select>
-        <br>
+            Abholort: <br>
+            <input type="text" th:field="*{abholort}" th:errorclass="inputError">
+            <span th:if="${#fields.hasErrors('abholort')}" th:errors="*{abholort}">Abholort falsch</span>
+            <br>
 
-        Haltbar bis: <br>
-        <input type="date" th:field="*{haltbarBis}" th:errorclass="inputError">
-        <span th:if="${#fields.hasErrors('haltbarBis')}" th:errors="*{haltbarBis}">Datum falsch</span>
-        <br><br>
+            Beschreibung: <br>
+            <input type="text" th:field="*{beschreibung}" th:errorclass="inputError">
+            <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}">Beschreibung falsch</span>
+            <br>
 
-        <input type="submit" value="ok"> <br>
-    </form>
+            Veggie-Faktor: <br>
+            <select th:field="*{veggieAuswahl}">
+                <option th:each="vw: *{veggieWerte}"
+                        th:value="${vw}"
+                        th:text="${vw} + '%'" />
+            </select>
+            <br>
+
+            Haltbar bis: <br>
+            <input type="date" th:field="*{haltbarBis}" th:errorclass="inputError">
+            <span th:if="${#fields.hasErrors('haltbarBis')}" th:errors="*{haltbarBis}">Datum falsch</span>
+            <br><br>
+
+            <button type="submit">OK</button> <br>
+        </form>
+    </div>
 
 </body>
 </html>

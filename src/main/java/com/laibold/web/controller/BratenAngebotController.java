@@ -75,7 +75,7 @@ public class BratenAngebotController {
      */
     @GetMapping("/bearbeiten/{i}")
     public String editAngebot(Model m, @PathVariable int i, @ModelAttribute("angebotListe") ArrayList<BratenDaten> angebotListe) {
-        if (!angebotListe.isEmpty() && angebotListe.size() >= i) {
+        if (!angebotListe.isEmpty() && angebotListe.size() > i) {
             m.addAttribute("formBraten", angebotListe.get(i));
             angebotListe.remove(i);
             return "angebot/bearbeiten";

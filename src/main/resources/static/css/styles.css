@@ -12,7 +12,6 @@ body {
     display: flex;
     align-items: center;
     background-size: cover;
-    background-image: url("img/bg.png");
 }
 
 .inner {
@@ -21,13 +20,26 @@ body {
     min-width: 400px;
     max-width: 750px;
     padding: 90px;
-    padding-bottom: 50px;
-    padding-top: 50px;
+    padding-bottom: 40px;
+    padding-top: 40px;
     background: rgba(137, 137, 137, 0.65);
     box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
 }
 
-.inputForm input {
+.innerContent {
+    display: block;
+    color: #FFFFFF;
+    margin: auto;
+    min-width: 400px;
+    max-width: 700px;
+    padding: 90px;
+    padding-bottom: 0px;
+    padding-top: 40px;
+    background: rgba(137, 137, 137, 0.65);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+}
+
+.loginForm input {
     min-width: 200px;
     color: #FFFFFF;
     background: transparent;
@@ -36,14 +48,49 @@ body {
     margin-bottom: 20px;
 }
 
+.inputForm input {
+    min-height: 30px;
+    min-width: 300px;
+    color: #FFFFFF;
+    background: transparent;
+    border: none;
+    border-bottom: #FFFFFF solid 1px;
+    margin-bottom: 25px;
+    margin-right: 10px;
+}
+
+.inputForm select {
+    min-height: 30px;
+    min-width: 300px;
+    color: #FFFFFF;
+    background: transparent;
+    border: none;
+    border-bottom: #FFFFFF solid 1px;
+    margin-bottom: 25px;
+    margin-right: 10px;
+}
+
+.inputForm select:-webkit-autofill {
+    -webkit-background: transparent;
+}
+
+.inputForm option {
+    background: rgba(0, 0, 0, 0.52);
+}
+
 .content {
     text-align: center;
     color: white;
     align-content: center;
 }
 
+h1.centered {
+    text-align: center;
+    color: white;
+}
+
 .inputError {
-    border: solid 1px red;
+    border-bottom: solid 2px #e80000 !important;
 }
 
 h1 {
