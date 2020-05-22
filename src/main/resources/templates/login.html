@@ -13,9 +13,9 @@
             <h1>Login</h1>
             <span th:text="${passwordHint}"></span>
             <form method="POST" action="/login" class="loginForm">
-                Name: <br>
+                <span th:text="#{login.name}"/>: <br>
                 <input type="text" name="username"> <br>
-                Passwort: <br>
+                <span th:text="#{login.password}"/>: <br>
                 <input type="password" name="password"> <br><br>
                 <button type="submit">OK</button> <br>
             </form>
