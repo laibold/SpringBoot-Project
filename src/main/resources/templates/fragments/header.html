@@ -5,10 +5,12 @@
         <link rel="stylesheet" th:href="@{/css/menustyles.css}">
 
         <div class="topnav">
-            <a href="/angebot/liste">Liste</a>
+            <a href="/angebot/liste" th:text="#{header.list}">Liste</a>
             <a href="#news">News</a>
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
+            <a class="right" th:href="@{?lang=de}">🍺</a>
+            <a class="right" th:href="@{?lang=en}">🍔</a>
             <a class="right" href="/login">Logout</a>
         </div>
 

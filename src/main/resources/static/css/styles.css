@@ -70,12 +70,13 @@ body {
     margin-right: 10px;
 }
 
-.inputForm select:-webkit-autofill {
-    -webkit-background: transparent;
-}
-
 .inputForm option {
     background: rgba(0, 0, 0, 0.52);
+}
+
+.langSwitch {
+    text-decoration: none;
+    margin-right: 15px;
 }
 
 .content {

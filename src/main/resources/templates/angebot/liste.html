@@ -11,21 +11,20 @@
 
     <div class="content">
 
-        <h1>ANGEBOTE</h1>
-
-        <span th:if="${#lists.isEmpty(angebotListe)}">
-        Noch keine Einträge vorhanden. <br><br>
-    </span>
+        <h1 th:text="#{list.offers}"></h1>
+        <span th:if="${#lists.isEmpty(angebotListe)}" th:text="#{list.empty} "/>
+            <br><br>
+        </span>
 
         <table th:if="${not #lists.isEmpty(angebotListe)}" class="centerTable">
             <tr>
-                <th>Name</td>
-                <th>Abholort</th>
-                <th>Haltbar bis</th>
-                <th>Beschreibung</th>
-                <th>Veggie-Faktor</th>
-                <th>Bearbeiten</th>
-                <th>Löschen</th>
+                <th th:text="#{edit.provider}"></td>
+                <th th:text="#{edit.location}"></th>
+                <th th:text="#{edit.best_before}"></th>
+                <th th:text="#{edit.description}"></th>
+                <th th:text="#{edit.veggie_factor}"></th>
+                <th th:text="#{edit.edit}"></th>
+                <th th:text="#{edit.delete}"></th>
             </tr>
             <tr th:each="ele,status : ${angebotListe}" >
                 <td th:text="${ele.name}">Name</td>
@@ -38,7 +37,7 @@
             </tr>
         </table>
 
-        <a href="/angebot/neu"><button>NEU</button></a>
+        <a href="/angebot/neu"><button th:text="#{list.new}"></button></a>
 
     </div>
 

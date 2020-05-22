@@ -11,19 +11,20 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class BratenDaten {
-    @Size(min = 3, message = "Name muss mindestens {min} Zeichen lang sein")
+    @Size(min = 3, message="{name.length}")
     private String name;
 
-    @Address
+    @Address(message = "{address.invalid}")
     private String abholort;
 
-    @Size(max = 80, message = "Beschreibung darf maximal {max} Zeichen lang sein")
-    @NotBlank(message = "Darf nicht leer sein")
+    @Size(max = 80, message="{description.length}")
+    @NotBlank(message="{description.blank}")
     private String beschreibung;
 
-    @NotNull(message = "Gültiges Datum eingeben")
-    @FutureOrPresent(message = "Ih, das ist ja schon abgelaufen")
+    @NotNull(message="{bbe.invalid}")
+    @FutureOrPresent(message="{bbe.past}")
     private LocalDate haltbarBis;
+
 
     private int[] veggieWerte = {0, 25, 50, 100};
 

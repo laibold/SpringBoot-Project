@@ -9,26 +9,26 @@
 
     <header th:insert="fragments/header.html :: header"> </header>
 
-    <h1 class="centered">Braten erfassen und bearbeiten</h1>
+    <h1 class="centered" th:text="#{edit.headline}"></h1>
 
     <div class="innerContent">
         <form class="inputForm" method="POST" action="/angebot/neu" th:object="${formBraten}" >
-            Anbieter: <br>
+            <span th:text="#{edit.provider}"/>: <br>
             <input type="text" th:field="*{name}" th:errorclass="inputError">
-            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name falsch</span>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:text="#{edit.wrong_name}"/>
             <br>
 
-            Abholort: <br>
+            <span th:text="#{edit.location}"/>: <br>
             <input type="text" th:field="*{abholort}" th:errorclass="inputError">
-            <span th:if="${#fields.hasErrors('abholort')}" th:errors="*{abholort}">Abholort falsch</span>
+            <span th:if="${#fields.hasErrors('abholort')}" th:errors="*{abholort}" th:text="#{edit.wrong_location}"/>
             <br>
 
-            Beschreibung: <br>
+            <span th:text="#{edit.description}"/>: <br>
             <input type="text" th:field="*{beschreibung}" th:errorclass="inputError">
-            <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}">Beschreibung falsch</span>
+            <span th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}" th:text="#{edit.description}"/>
             <br>
 
-            Veggie-Faktor: <br>
+            <span th:text="#{edit.veggie_factor}"/>: <br>
             <select th:field="*{veggieAuswahl}">
                 <option th:each="vw: *{veggieWerte}"
                         th:value="${vw}"
@@ -36,12 +36,12 @@
             </select>
             <br>
 
-            Haltbar bis: <br>
+            <span th:text="#{edit.best_before}"/>: <br>
             <input type="date" th:field="*{haltbarBis}" th:errorclass="inputError">
-            <span th:if="${#fields.hasErrors('haltbarBis')}" th:errors="*{haltbarBis}">Datum falsch</span>
+            <span th:if="${#fields.hasErrors('haltbarBis')}" th:errors="*{haltbarBis}" th:text="#{edit.best_before_invalid}"/>
             <br><br>
 
-            <button type="submit">OK</button> <br>
+            <button type="submit" th:text="#{edit.ok}"></button> <br>
         </form>
     </div>
 
