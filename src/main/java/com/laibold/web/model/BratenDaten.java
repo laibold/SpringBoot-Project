@@ -25,7 +25,6 @@ public class BratenDaten {
     @FutureOrPresent(message="{bbe.past}")
     private LocalDate haltbarBis;
 
-
     private int[] veggieWerte = {0, 25, 50, 100};
 
     private int veggieAuswahl; // SelectBox Einfachauswahl
