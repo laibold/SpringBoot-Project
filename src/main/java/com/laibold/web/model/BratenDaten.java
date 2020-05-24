@@ -1,9 +1,7 @@
 package com.laibold.web.model;
 
 import com.laibold.web.tools.validation.Address;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
