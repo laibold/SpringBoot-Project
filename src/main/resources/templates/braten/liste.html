@@ -32,12 +32,12 @@
                 <td th:text="${#temporals.format(ele.haltbarBis, 'dd.MM.yyyy')}">Haltbar bis</td>
                 <td th:text="${ele.beschreibung}">Beschreibung</td>
                 <td th:text="${ele.veggieAuswahl} + '%'">Veggie-Faktor</td>
-                <td> <a th:href="@{'/braten/bearbeiten/' + ${status.index}}">🖊️</a> </td>
+                <td> <a th:href="@{'/braten/angebot/' + ${status.index}}">🖊️</a> </td>
                 <td> <a th:href="@{'/braten/del/' + ${status.index}}">🗑️</a> </td>
             </tr>
         </table>
 
-        <a href="/braten/neu"><button th:text="#{list.new}"></button></a>
+        <a href="/braten/angebot/neu"><button th:text="#{list.new}"></button></a>
 
     </div>
 

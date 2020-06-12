@@ -2,6 +2,8 @@ package com.laibold.web.controller;
 
 import com.laibold.web.model.Braten;
 
+import com.laibold.web.model.benutzer.Benutzer;
+import com.laibold.web.service.BenutzerService;
 import com.laibold.web.service.BratenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,41 +18,35 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/braten")
-@SessionAttributes(names = {"angebotListe"})
+@SessionAttributes(names = {"loggedInUser"})
 public class BratenWebController {
 
     @Autowired
     BratenService bratenService;
 
     /**
-     * Session-Attribut initialisieren
-     */
-    @ModelAttribute("angebotListe")
-    public void initAngebotListe(Model m) {
-        m.addAttribute("angebotListe", new ArrayList<Braten>());
-    }
-
-    /**
      * Liste anzeigen
      */
-    @GetMapping("/liste")
-    public String listeGet(@ModelAttribute("angebotListe") ArrayList<Braten> angebotListe) {
+    @GetMapping("/angebot")
+    public String angebotGet(Model m) {
+        m.addAttribute("angebotListe", bratenService.getAllBraten());
         return "braten/liste";
     }
 
     /**
      * Neues Element in Liste POSTen
      */
-    @PostMapping("/neu")
+    @PostMapping("/angebot/neu")
     public String listePost(@Valid @ModelAttribute("formBraten") Braten formBraten, BindingResult result,
-                            @ModelAttribute("angebotListe") ArrayList<Braten> angebotListe) {
+                            @ModelAttribute("loggedInUser") Benutzer loggedInUser) {
         if (result.hasErrors()) {
             return "braten/bearbeiten";
         }
-        angebotListe.add(formBraten);
+        bratenService.addBraten(loggedInUser.getUsername(), formBraten);
         return "redirect:/braten/liste";
     }
 
@@ -66,11 +62,12 @@ public class BratenWebController {
     /**
      * i-tes Element aus der Liste entfernen und Inhalte im bearbeiten-Formular anzeigen
      */
-    @GetMapping("/del/{i}")
+    @GetMapping("/angebot/{i}/del")
     public String deleteAngebot(@PathVariable int i, @ModelAttribute("angebotListe") ArrayList<Braten> angebotListe) {
-        if (!angebotListe.isEmpty() && angebotListe.size() >= i) {
+        Optional<Braten> braten = bratenService.getBratenById(i);
+        if (braten.isPresent()) {
             // Wenn Element noch vorhanden
-            angebotListe.remove(i);
+            bratenService.removeBraten(i);
         }
         return "braten/liste";
     }
@@ -78,11 +75,12 @@ public class BratenWebController {
     /**
      * i-tes Element aus der Liste entfernen und Inhalte auf der bearbeiten-Seite anzeigen
      */
-    @GetMapping("/bearbeiten/{i}")
+    @GetMapping("/angebot/{i}")
     public String editAngebot(Model m, @PathVariable int i, @ModelAttribute("angebotListe") ArrayList<Braten> angebotListe) {
-        if (!angebotListe.isEmpty() && angebotListe.size() > i) {
-            m.addAttribute("formBraten", angebotListe.get(i));
-            angebotListe.remove(i);
+        Optional<Braten> braten = bratenService.getBratenById(i);
+        if (braten.isPresent()) {
+            m.addAttribute("formBraten", braten);
+            bratenService.removeBraten(i);
             return "braten/bearbeiten";
         }
         // Fehlerfall Element nicht mehr vorhanden
