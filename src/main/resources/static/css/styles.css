@@ -59,6 +59,12 @@ body {
     margin-right: 10px;
 }
 
+.inputForm input[type="checkbox"] {
+    min-height: 20px;
+    min-width: 20px;
+    margin-left: 0px;
+}
+
 .inputForm select {
     min-height: 30px;
     min-width: 300px;
@@ -91,6 +97,10 @@ h1.centered {
 }
 
 .inputError {
+    border-bottom: solid 2px #e80000 !important;
+}
+
+.inputError input[type="checkbox"] {
     border-bottom: solid 2px #e80000 !important;
 }
 
@@ -142,4 +152,8 @@ button:hover {
 
 :focus {
     outline: none;
+}
+
+.formLink {
+    color: white;
 }

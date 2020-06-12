@@ -1,8 +1,7 @@
-package com.laibold.web.tools.validation;
+package com.laibold.web.service.tools.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.constraints.Min;
 import java.lang.annotation.*;
 
 @Target({ElementType.FIELD})

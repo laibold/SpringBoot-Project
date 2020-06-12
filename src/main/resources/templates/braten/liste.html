@@ -12,7 +12,7 @@
     <div class="content">
 
         <h1 th:text="#{list.offers}"></h1>
-        <span th:if="${#lists.isEmpty(angebotListe)}" th:text="#{list.empty} "/>
+        <span th:if="${#lists.isEmpty(angebotListe)}" th:text="#{list.empty} ">
             <br><br>
         </span>
 
@@ -32,12 +32,12 @@
                 <td th:text="${#temporals.format(ele.haltbarBis, 'dd.MM.yyyy')}">Haltbar bis</td>
                 <td th:text="${ele.beschreibung}">Beschreibung</td>
                 <td th:text="${ele.veggieAuswahl} + '%'">Veggie-Faktor</td>
-                <td> <a th:href="@{'/angebot/bearbeiten/' + ${status.index}}">🖊️</a> </td>
-                <td> <a th:href="@{'/angebot/del/' + ${status.index}}">🗑️</a> </td>
+                <td> <a th:href="@{'/braten/bearbeiten/' + ${status.index}}">🖊️</a> </td>
+                <td> <a th:href="@{'/braten/del/' + ${status.index}}">🗑️</a> </td>
             </tr>
         </table>
 
-        <a href="/angebot/neu"><button th:text="#{list.new}"></button></a>
+        <a href="/braten/neu"><button th:text="#{list.new}"></button></a>
 
     </div>
 

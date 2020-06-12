@@ -12,7 +12,7 @@
     <h1 class="centered" th:text="#{edit.headline}"></h1>
 
     <div class="innerContent">
-        <form class="inputForm" method="POST" action="/angebot/neu" th:object="${formBraten}" >
+        <form class="inputForm" method="POST" action="/braten/neu" th:object="${formBraten}" >
             <span th:text="#{edit.provider}"/>: <br>
             <input type="text" th:field="*{name}" th:errorclass="inputError">
             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:text="#{edit.wrong_name}"/>

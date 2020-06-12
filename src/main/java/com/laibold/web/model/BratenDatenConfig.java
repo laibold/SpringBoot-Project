@@ -1,7 +1,7 @@
 package com.laibold.web.model;
 
-import com.laibold.web.tools.converter.LocalDateToStringConverter;
-import com.laibold.web.tools.converter.StringToLocalDateConverter;
+import com.laibold.web.service.tools.converter.LocalDateToStringConverter;
+import com.laibold.web.service.tools.converter.StringToLocalDateConverter;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

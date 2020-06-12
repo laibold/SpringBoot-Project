@@ -1,16 +1,28 @@
 package com.laibold.web.model;
 
-import com.laibold.web.tools.validation.Address;
+import com.laibold.web.model.benutzer.Benutzer;
+import com.laibold.web.service.tools.validation.Address;
 
+import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-public class BratenDaten {
-    @Size(min = 3, message="{name.length}")
-    private String name;
+@Entity
+public class Braten {
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Version
+    private long version;
+
+    @NotNull(message="{provider.notNull}")
+    @ManyToOne
+    private Benutzer anbieter;
 
     @Address(message = "{address.invalid}")
     private String abholort;
@@ -23,27 +35,45 @@ public class BratenDaten {
     @FutureOrPresent(message="{bbe.past}")
     private LocalDate haltbarBis;
 
+    @Transient
     private int[] veggieWerte = {0, 25, 50, 100};
 
+    @Transient
     private int veggieAuswahl; // SelectBox Einfachauswahl
 
-    public BratenDaten() {
+    public Braten() {
 
     }
 
-    public BratenDaten(String name, String abholort, LocalDate haltbarBis, String beschreibung) {
-        this.name = name;
+    public Braten(Benutzer anbieter, String abholort, LocalDate haltbarBis, String beschreibung) {
+        this.anbieter = anbieter;
         this.abholort = abholort;
         this.haltbarBis = haltbarBis;
         this.beschreibung = beschreibung;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
+    public Benutzer getAnbieter() {
+        return anbieter;
+    }
+
+    public void setAnbieter(Benutzer anbieter) {
+        this.anbieter = anbieter;
     }
 
     public String getAbholort() {
@@ -84,7 +114,8 @@ public class BratenDaten {
 
     public String toString() {
         String s = "BratenDaten";
-        s += "Name: " + name + "\n";
+        String anbieterName = anbieter.getFullName() != "" ? anbieter.getFullName() : anbieter.getUsername();
+        s += "Anbieter: " + anbieterName + "\n";
         s += "Abholort: " + abholort + "\n";
         s += "Haltbar bis: " + haltbarBis + "\n";
         s += "Beschreibung: " + beschreibung + "\n";

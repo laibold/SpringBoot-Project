@@ -1,30 +1,38 @@
 package com.laibold.web.model.benutzer;
 
+import com.laibold.web.model.Braten;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
 public class Benutzer {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private long id;
 
     @Version
     private long version;
 
-    @NotBlank()
+    @NotBlank(message = "{notblank}")
     @Column(unique = true)
-    private String username;
+    private String username = "";
 
-    @Size(min = 3)
-    private String password;
+    @Size(min = 3, message = "{password.length}")
+    private String password = "";
 
-    @NotBlank()
-    private String fullName;
+    @NotBlank(message = "{notblank}")
+    private String fullName = "";
 
     private boolean acceptedTOS;
+
+    @OneToMany(mappedBy = "anbieter")
+    private Collection<Braten> angebote = new HashSet<>();
 
     public long getId() {
         return id;
@@ -72,6 +80,10 @@ public class Benutzer {
 
     public void setAcceptedTOS(boolean acceptedTOS) {
         this.acceptedTOS = acceptedTOS;
+    }
+
+    public Collection<Braten> getAngebote() {
+        return angebote;
     }
 
     @Override

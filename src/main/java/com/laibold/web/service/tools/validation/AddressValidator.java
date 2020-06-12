@@ -1,4 +1,4 @@
-package com.laibold.web.tools.validation;
+package com.laibold.web.service.tools.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

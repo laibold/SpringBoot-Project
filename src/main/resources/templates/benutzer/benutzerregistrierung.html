@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body th:background="@{/img/bg.jpg}">
+
+<h1 class="centered" th:text="#{register.headline}"></h1>
+
+<div class="innerContent">
+    <form class="inputForm" method="POST" action="/benutzer/benutzerregistrierung" th:object="${formBenutzer}" >
+        <span th:text="#{register.username}"/>: <br>
+        <input type="text" th:field="*{username}" th:errorclass="inputError">
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:text="#{TODO}"/>
+        <br>
+
+        <span th:text="#{register.password}"/>: <br>
+        <input type="password" th:field="*{password}" th:errorclass="inputError">
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:text="#{TODO}"/>
+        <br>
+
+        <span th:text="#{register.fullName}"/>: <br>
+        <input type="text" th:field="*{fullName}" th:errorclass="inputError">
+        <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" th:text="#{TODO}"/>
+        <br>
+
+        <span th:text="#{register.acceptTOS}"/>: <br>
+
+        <div th:switch="${tosError}">
+            <div th:case="false">
+                <input type="checkbox" th:field="*{acceptedTOS}">
+            </div>
+            <div th:case="true">
+                <input type="checkbox" th:field="*{acceptedTOS}" style="border: solid red;">
+                <span>ungeil</span>
+            </div>
+        </div>
+
+        <br><br>
+
+        <button type="submit" th:text="#{register.ok}"></button> <br>
+    </form>
+</div>
+
+</body>
+</html>
