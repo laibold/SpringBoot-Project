@@ -13,10 +13,6 @@
 
     <div class="innerContent">
         <form class="inputForm" method="POST" action="/braten/angebot/neu" th:object="${formBraten}" >
-            <span th:text="#{edit.provider}"/>: <br>
-            <input type="text" th:field="*{name}" th:errorclass="inputError">
-            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:text="#{edit.wrong_name}"/>
-            <br>
 
             <span th:text="#{edit.location}"/>: <br>
             <input type="text" th:field="*{abholort}" th:errorclass="inputError">

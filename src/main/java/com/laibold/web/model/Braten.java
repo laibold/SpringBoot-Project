@@ -20,7 +20,6 @@ public class Braten {
     @Version
     private long version;
 
-    @NotNull(message="{provider.notNull}")
     @ManyToOne
     private Benutzer anbieter;
 
@@ -36,13 +35,12 @@ public class Braten {
     private LocalDate haltbarBis;
 
     @Transient
-    private int[] veggieWerte = {0, 25, 50, 100};
+    private int[] veggieWerte;
 
-    @Transient
     private int veggieAuswahl; // SelectBox Einfachauswahl
 
     public Braten() {
-
+        initFormValues();
     }
 
     public Braten(Benutzer anbieter, String abholort, LocalDate haltbarBis, String beschreibung) {
@@ -50,6 +48,7 @@ public class Braten {
         this.abholort = abholort;
         this.haltbarBis = haltbarBis;
         this.beschreibung = beschreibung;
+        initFormValues();
     }
 
     public int getId() {
@@ -120,5 +119,9 @@ public class Braten {
         s += "Haltbar bis: " + haltbarBis + "\n";
         s += "Beschreibung: " + beschreibung + "\n";
         return s;
+    }
+
+    public void initFormValues() {
+        this.veggieWerte = new int[]{0, 25, 50, 100};
     }
 }

@@ -33,7 +33,7 @@ public class LoginController {
                             @ModelAttribute("loggedInUser") Benutzer loggedInUser) {
         if (benutzerService.testLogin(username, password)) {
             loggedInUser.setUsername(username);
-            return "redirect:/braten/liste";
+            return "redirect:/braten/angebot";
         }
         String correctPassword = benutzerService.getPassword(username);
         String hint = "Hinweis: Das korrekte Passwort für " + username + " ist " + correctPassword;

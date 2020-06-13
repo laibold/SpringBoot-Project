@@ -47,13 +47,14 @@ public class BratenWebController {
             return "braten/bearbeiten";
         }
         bratenService.addBraten(loggedInUser.getUsername(), formBraten);
-        return "redirect:/braten/liste";
+
+        return "redirect:/braten/angebot";
     }
 
     /**
      * Neues Element im bearbeiten-Formular anlegen
      */
-    @GetMapping("/neu")
+    @GetMapping("/angebot/neu")
     public String neuGet(Model m) {
         m.addAttribute("formBraten", new Braten());
         return "braten/bearbeiten";
@@ -79,7 +80,7 @@ public class BratenWebController {
     public String editAngebot(Model m, @PathVariable int i, @ModelAttribute("angebotListe") ArrayList<Braten> angebotListe) {
         Optional<Braten> braten = bratenService.getBratenById(i);
         if (braten.isPresent()) {
-            m.addAttribute("formBraten", braten);
+            m.addAttribute("formBraten", braten.get());
             bratenService.removeBraten(i);
             return "braten/bearbeiten";
         }

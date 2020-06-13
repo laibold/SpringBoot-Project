@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BratenServiceImpl implements BratenService{
+public class BratenServiceImpl implements BratenService {
 
     @Autowired
     BratenRepository bratenRepository;
@@ -28,12 +28,14 @@ public class BratenServiceImpl implements BratenService{
 
     @Override
     public Optional<Braten> getBratenById(int id) {
-        return bratenRepository.findById(id);
+        Optional<Braten> braten = bratenRepository.findById(id);
+        braten.get().initFormValues();
+        return braten;
     }
 
     @Transactional
     @Override
-    public Braten addBraten(String username, Braten braten) throws BratenServiceException{
+    public Braten addBraten(String username, Braten braten) throws BratenServiceException {
         try {
             Benutzer benutzer = benutzerRepository.findByUsername(username);
             braten.setAnbieter(benutzer);

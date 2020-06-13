@@ -12,6 +12,16 @@ import java.util.Objects;
 @Entity
 public class Benutzer {
 
+    public Benutzer(String username, String password,String fullName) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+    }
+
+    public Benutzer() {
+
+    }
+
     @Id
     @GeneratedValue
     private long id;
