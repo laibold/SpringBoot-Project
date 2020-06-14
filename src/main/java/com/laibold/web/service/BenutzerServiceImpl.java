@@ -30,7 +30,7 @@ public class BenutzerServiceImpl implements BenutzerService {
 
     @Override
     public Benutzer registerBenutzer(Benutzer newBenutzer) {
-        if (findBenutzer(newBenutzer.getUsername()) != null) {
+        if (benutzerRepository.findByUsername(newBenutzer.getUsername()) != null) {
             throw new BenutzernameSchonVergebenException(newBenutzer.getUsername());
         }
         return benutzerRepository.save(newBenutzer);

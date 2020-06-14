@@ -1,8 +1,6 @@
 package com.laibold.web.model.benutzer;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import com.laibold.web.model.Braten;
 
 import javax.persistence.*;
@@ -12,10 +10,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 @Entity
 public class Benutzer {
 
@@ -31,9 +25,11 @@ public class Benutzer {
 
     @Id
     @GeneratedValue
+    @JsonIgnore
     private long id;
 
     @Version
+    @JsonIgnore
     private long version;
 
     @NotBlank(message = "{notblank}")
@@ -41,6 +37,7 @@ public class Benutzer {
     private String username = "";
 
     @Size(min = 3, message = "{password.length}")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password = "";
 
     @NotBlank(message = "{notblank}")
@@ -48,7 +45,7 @@ public class Benutzer {
 
     private boolean acceptedTOS;
 
-    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
     @OneToMany(mappedBy = "anbieter")
     private Collection<Braten> angebote = new HashSet<>();
 

@@ -1,6 +1,7 @@
 package com.laibold.web.controller.api;
 
 import com.laibold.web.model.benutzer.Benutzer;
+import com.laibold.web.model.exception.BenutzernameNichtVergebenException;
 import com.laibold.web.model.exception.BenutzernameSchonVergebenException;
 import com.laibold.web.service.BenutzerService;
 import org.springframework.beans.factory.annotation.Autowired;
