@@ -1,6 +1,7 @@
 package com.laibold.web.service;
 
 import com.laibold.web.model.benutzer.Benutzer;
+import com.laibold.web.model.exception.BenutzernameNichtVergebenException;
 import com.laibold.web.model.exception.BenutzernameSchonVergebenException;
 import com.laibold.web.persistence.benutzer.BenutzerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +31,17 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override
     public Benutzer registerBenutzer(Benutzer newBenutzer) {
         if (findBenutzer(newBenutzer.getUsername()) != null) {
-            throw new BenutzernameSchonVergebenException();
+            throw new BenutzernameSchonVergebenException(newBenutzer.getUsername());
         }
         return benutzerRepository.save(newBenutzer);
     }
 
     @Override
     public Benutzer findBenutzer(String username) {
-        return (benutzerRepository.findByUsername(username));
+        Benutzer benutzer = benutzerRepository.findByUsername(username);
+        if (benutzer == null) {
+            throw new BenutzernameNichtVergebenException(username);
+        }
+        return benutzer;
     }
 }

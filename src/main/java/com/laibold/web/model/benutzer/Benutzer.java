@@ -1,5 +1,8 @@
 package com.laibold.web.model.benutzer;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.laibold.web.model.Braten;
 
 import javax.persistence.*;
@@ -9,10 +12,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 public class Benutzer {
 
-    public Benutzer(String username, String password,String fullName) {
+    public Benutzer(String username, String password, String fullName) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
@@ -41,6 +48,7 @@ public class Benutzer {
 
     private boolean acceptedTOS;
 
+    @JsonIdentityReference(alwaysAsId = true)
     @OneToMany(mappedBy = "anbieter")
     private Collection<Braten> angebote = new HashSet<>();
 

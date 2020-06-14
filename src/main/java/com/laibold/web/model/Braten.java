@@ -1,5 +1,8 @@
 package com.laibold.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.laibold.web.model.benutzer.Benutzer;
 import com.laibold.web.service.tools.validation.Address;
 
@@ -10,6 +13,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 public class Braten {
 
@@ -21,17 +28,18 @@ public class Braten {
     private long version;
 
     @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
     private Benutzer anbieter;
 
     @Address(message = "{address.invalid}")
     private String abholort;
 
-    @Size(max = 80, message="{description.length}")
-    @NotBlank(message="{description.blank}")
+    @Size(max = 80, message = "{description.length}")
+    @NotBlank(message = "{description.blank}")
     private String beschreibung;
 
-    @NotNull(message="{bbe.invalid}")
-    @FutureOrPresent(message="{bbe.past}")
+    @NotNull(message = "{bbe.invalid}")
+    @FutureOrPresent(message = "{bbe.past}")
     private LocalDate haltbarBis;
 
     @Transient
