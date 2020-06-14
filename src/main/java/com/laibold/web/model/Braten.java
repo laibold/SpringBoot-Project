@@ -2,6 +2,7 @@ package com.laibold.web.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.laibold.web.model.benutzer.Benutzer;
 import com.laibold.web.service.tools.validation.Address;
@@ -43,6 +44,7 @@ public class Braten {
     private LocalDate haltbarBis;
 
     @Transient
+    @JsonIgnore
     private int[] veggieWerte;
 
     private int veggieAuswahl; // SelectBox Einfachauswahl

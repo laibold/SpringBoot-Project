@@ -2,6 +2,8 @@ package com.laibold.web.service;
 
 import com.laibold.web.model.Braten;
 import com.laibold.web.model.benutzer.Benutzer;
+import com.laibold.web.model.exception.BenutzernameNichtVergebenException;
+import com.laibold.web.model.exception.BratenNichtVorhandenException;
 import com.laibold.web.model.exception.BratenServiceException;
 import com.laibold.web.persistence.benutzer.BenutzerRepository;
 import com.laibold.web.persistence.braten.BratenRepository;
@@ -29,6 +31,9 @@ public class BratenServiceImpl implements BratenService {
     @Override
     public Optional<Braten> getBratenById(int id) {
         Optional<Braten> braten = bratenRepository.findById(id);
+        if (!braten.isPresent()) {
+            throw new BratenNichtVorhandenException();
+        }
         braten.get().initFormValues();
         return braten;
     }
@@ -36,8 +41,11 @@ public class BratenServiceImpl implements BratenService {
     @Transactional
     @Override
     public Braten addBraten(String username, Braten braten) throws BratenServiceException {
+        Benutzer benutzer = benutzerRepository.findByUsername(username);
+        if (benutzer == null) {
+            throw new BenutzernameNichtVergebenException(username);
+        }
         try {
-            Benutzer benutzer = benutzerRepository.findByUsername(username);
             braten.setAnbieter(benutzer);
             return bratenRepository.save(braten);
         } catch (IllegalArgumentException e) {
@@ -47,6 +55,10 @@ public class BratenServiceImpl implements BratenService {
 
     @Override
     public void removeBraten(int id) {
-        bratenRepository.deleteById(id);
+        if (bratenRepository.findById(id).isPresent()){
+            bratenRepository.deleteById(id);
+        } else {
+            throw new BratenNichtVorhandenException();
+        }
     }
 }

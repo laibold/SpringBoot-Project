@@ -3,6 +3,7 @@ package com.laibold.web.controller;
 import com.laibold.web.model.Braten;
 
 import com.laibold.web.model.benutzer.Benutzer;
+import com.laibold.web.model.exception.BratenNichtVorhandenException;
 import com.laibold.web.service.BenutzerService;
 import com.laibold.web.service.BratenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,12 +66,8 @@ public class BratenWebController {
      */
     @GetMapping("/angebot/{i}/del")
     public String deleteAngebot(@PathVariable int i, @ModelAttribute("angebotListe") ArrayList<Braten> angebotListe) {
-        Optional<Braten> braten = bratenService.getBratenById(i);
-        if (braten.isPresent()) {
-            // Wenn Element noch vorhanden
-            bratenService.removeBraten(i);
-        }
-        return "braten/liste";
+        bratenService.removeBraten(i);
+        return "redirect:/braten/angebot";
     }
 
     /**
@@ -78,14 +75,15 @@ public class BratenWebController {
      */
     @GetMapping("/angebot/{i}")
     public String editAngebot(Model m, @PathVariable int i, @ModelAttribute("angebotListe") ArrayList<Braten> angebotListe) {
-        Optional<Braten> braten = bratenService.getBratenById(i);
-        if (braten.isPresent()) {
+        try {
+            Optional<Braten> braten = bratenService.getBratenById(i);
             m.addAttribute("formBraten", braten.get());
             bratenService.removeBraten(i);
             return "braten/bearbeiten";
+        } catch (BratenNichtVorhandenException e) {
+            // Fehlerfall Element nicht mehr vorhanden
+            return "braten/liste";
         }
-        // Fehlerfall Element nicht mehr vorhanden
-        return "braten/liste";
     }
 
 }
